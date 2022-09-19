@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NAVBAR RENDER TESTS Matches Snapshot 1`] = `
+<div
+  className="navBar"
+>
+  <img
+    alt="Logo"
+    className="logo"
+    data-testid="logo"
+    src="Logo.png"
+  />
+  <nav>
+    <a
+      className="navLink"
+      data-testid="payment"
+      href="/transactions"
+      onClick={[Function]}
+    >
+      Pay or Request
+    </a>
+    <a
+      className="navLink"
+      data-testid="transaction"
+      href="/transactions"
+      onClick={[Function]}
+    >
+      Transactions
+    </a>
+    <a
+      className="navLink"
+      data-testid="profile"
+      href="/profile"
+      onClick={[Function]}
+    >
+      Profile
+    </a>
+  </nav>
+</div>
+`;
+
+exports[`NAVBAR TESTS Matches Snapshot 1`] = `
+<div
+  className="navBar"
+>
+  <img
+    alt="Logo"
+    className="logo"
+    data-testid="logo"
+    src="Logo.png"
+  />
+  <nav>
+    <a
+      className="navLink"
+      data-testid="payment"
+      href="/transactions"
+      onClick={[Function]}
+    >
+      Pay or Request
+    </a>
+    <a
+      className="navLink"
+      data-testid="transaction"
+      href="/transactions"
+      onClick={[Function]}
+    >
+      Transactions
+    </a>
+    <a
+      className="navLink"
+      data-testid="profile"
+      href="/profile"
+      onClick={[Function]}
+    >
+      Profile
+    </a>
+  </nav>
+</div>
+`;
