@@ -9,11 +9,11 @@ export const NavBar = () => {
         <div className="navBar">
             <img className="logo" data-testid="logo" src={require('../../Images/Logo.png')} alt="Logo" />
             <nav>
-                <Link to="transactions" className="navLink" data-testid="payment">Pay or Request</Link>
+                <Link to="payments" className="navLink" id='paymentsLink' data-testid="payment">Pay or Request</Link>
 
-                <Link to="transactions" className="navLink" data-testid="transaction">Transactions</Link>
+                <Link to="/" className="navLink" id='transactionsLink' data-testid="transaction">Transactions</Link>
 
-                <Link to="profile" className="navLink" data-testid="profile">Profile</Link>
+                <Link to="profile" className="navLink" id='profileLink' data-testid="profile">Profile</Link>
 
             </nav>
 
