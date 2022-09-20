@@ -1,13 +1,12 @@
 import { render, screen, cleanup } from '@testing-library/react'
-import Transactinos from '../components/Transactions/transactions'
-
+import TransactionsLayout from '../Pages/TransactionsPage/TransactionsPage'
 describe('PAYMENTS RENDER TEST', () =>{
     afterEach(() => {
         cleanup();
     });
     
     it('Renders Transactions Components', () => {
-        render(<Transactinos/>)
+        render(<TransactionsLayout/>)
         
         const header = screen.getByTestId('header')
         expect(header).toBeInTheDocument();

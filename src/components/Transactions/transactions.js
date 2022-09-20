@@ -1,8 +1,8 @@
-
+import TransactionsLayout from "../../Pages/TransactionsPage/TransactionsPage"
 
 function Transactions(){
     return (
-        <h1 data-testid='header'>Transactions</h1>
+        <TransactionsLayout/>
     )
 }
 

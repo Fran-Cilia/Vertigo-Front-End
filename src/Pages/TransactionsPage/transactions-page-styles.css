@@ -1,0 +1,32 @@
+
+.Header{
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+ .Inactive{
+    padding: 10px 60px;
+    cursor: pointer;
+    opacity: 0.6;
+    background: white;
+    border: 0;
+    outline: 0;
+}
+
+.Active{
+    padding: 10px 60px;
+    cursor: pointer;
+    opacity: 1;
+    background: white;
+    border: 0;
+    outline: 0;
+    border-bottom: 2px solid black;
+    transition: border-bottom .1s linear, opacity .1s linear;
+}
+
+
+
