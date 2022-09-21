@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RENDER <TransactionLayout /> Matches Snapshot 1`] = `
+<div
+  className="Header"
+  data-testid="Header"
+>
+  <button
+    className="Active"
+    data-testid="Public"
+    onClick={[Function]}
+  >
+    Public
+  </button>
+  <button
+    className="Inactive"
+    data-testid="Friends"
+    onClick={[Function]}
+  >
+    Friends
+  </button>
+</div>
+`;

@@ -10,9 +10,9 @@ export function TransactionsLayout() {
         const [active, setActive] = useState(buttonNames[0]);
 
         return (
-            <div className='Header'>
+            <div className='Header' data-testid='Header'>
                 {buttonNames.map(element => {
-                    return <button className={active === element ? 'Active' : 'Inactive'} onClick={() => setActive(element)}>{element}</button>
+                    return <button key={element} data-testid={element} className={active === element ? 'Active' : 'Inactive'} onClick={() => setActive(element)}>{element}</button>
                 })}
             </div>
         )
