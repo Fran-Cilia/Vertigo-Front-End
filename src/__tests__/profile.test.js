@@ -1,7 +1,7 @@
 import { render, screen, cleanup } from '@testing-library/react'
 import Profile from '../components/Profile/profile'
 
-describe('PAYMENTS RENDER TEST', () =>{
+describe('PROFILE RENDER TEST', () =>{
 
     afterEach(() => {
         cleanup();
