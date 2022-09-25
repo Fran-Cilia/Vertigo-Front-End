@@ -1,17 +1,17 @@
 import { render, screen, cleanup, fireEvent } from '@testing-library/react'
 import TransactionsLayout from '../Pages/TransactionsPage/TransactionsPage'
 import renderer from 'react-test-renderer'
-import ToggleGroup from '../Pages/TransactionsPage/TransactionsPage'
+import { ToggleGroup, Transaction, MyTransactions } from '../Pages/TransactionsPage/TransactionsPage'
+import { useState } from 'react'
 
 
-
-describe('RENDER <TransactionLayout />', () =>{
+describe('RENDER <ToggleGroup />', () =>{
     afterEach(() => {
         cleanup();
     });
     
     it('Renders Transactions Components', () => {
-        render(<TransactionsLayout/>)
+        render(<ToggleGroup/>)
 
         const buttonHeader = screen.getByTestId('Header')
         expect(buttonHeader).toBeInTheDocument();
@@ -20,41 +20,68 @@ describe('RENDER <TransactionLayout />', () =>{
         expect(publicButton).toBeInTheDocument();
         expect(publicButton).toHaveTextContent('Public')
 
-        const friendsButton = screen.getByTestId('Friends')
+        const friendsButton = screen.getByTestId('Mine')
         expect(friendsButton).toBeInTheDocument();
-        expect(friendsButton).toHaveTextContent('Friends')
+        expect(friendsButton).toHaveTextContent('Mine')
     })
 
     it('Matches Snapshot', () => {
-        const tree = renderer.create(<TransactionsLayout/>).toJSON();
+        const tree = renderer.create(<ToggleGroup/>).toJSON();
         expect(tree).toMatchSnapshot();
     })
 })
 
-describe('<ToggleGroup />', () => {
+describe('FUNCTIONALITY <ToggleGroup />', () => {
     afterEach(() => {
         cleanup();
     });
 
     it('OnClick Public', () => {
-        const { queryByText } = render(<ToggleGroup/>);
+        const setActive = jest.fn();
+        const { queryByText } = render(<ToggleGroup setActive={setActive}/>);
 
         const publicButton = queryByText('Public');
-        const friendsButton = queryByText('Friends');
+        const friendsButton = queryByText('Mine');
         fireEvent.click(publicButton);
 
-        expect(publicButton.className).toBe('Active')
-        expect(friendsButton.className).toBe('Inactive')
+        expect(setActive).toHaveBeenCalledTimes(1);
     })
 
-    it('OnClick Friends', () => {
-        const { queryByText } = render(<ToggleGroup/>);
+    it('OnClick Mine', () => {
+        const setActive = jest.fn();
+        const { queryByText } = render(<ToggleGroup setActive={setActive}/>);
 
         const publicButton = queryByText('Public');
-        const friendsButton = queryByText('Friends');
+        const friendsButton = queryByText('Mine');
         fireEvent.click(friendsButton);
 
-        expect(publicButton.className).toBe('Inactive')
-        expect(friendsButton.className).toBe('Active')
+        expect(setActive).toHaveBeenCalledTimes(1);
+    })
+})
+
+describe('RENDERS <Transactions />', () =>{
+    afterEach(() => {
+        cleanup();
+    });
+
+    it('Renders Transactions Components', () => {
+        const transactions = {
+                transaction_id: 1,
+                recipient: 'Fran',
+                giver: 'Jose',
+                message: 'Food'
+            }
+        render(<Transaction id={transactions.transaction_id} recipient={transactions.recipient} giver={transactions.giver} message={transactions.message}/>)
+
+        const payer = screen.getByTestId(transactions.giver);
+        expect(payer).toBeInTheDocument();
+
+        const msg = screen.getByTestId(transactions.message);
+        expect(msg).toBeInTheDocument();
+    })
+
+    it('Matches Snapshot', () => {
+        const tree = renderer.create(<Transaction/>).toJSON();
+        expect(tree).toMatchSnapshot();
     })
 })

@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RENDER <TransactionLayout /> Matches Snapshot 1`] = `
+exports[`RENDER <ToggleGroup /> Matches Snapshot 1`] = `
 <div
   className="Header"
   data-testid="Header"
 >
   <button
-    className="Active"
+    className="Inactive"
     data-testid="Public"
     onClick={[Function]}
   >
@@ -14,10 +14,38 @@ exports[`RENDER <TransactionLayout /> Matches Snapshot 1`] = `
   </button>
   <button
     className="Inactive"
-    data-testid="Friends"
+    data-testid="Mine"
     onClick={[Function]}
   >
-    Friends
+    Mine
   </button>
+</div>
+`;
+
+exports[`RENDERS <Transactions /> Matches Snapshot 1`] = `
+<div>
+  <div
+    className="flex"
+  >
+    <div
+      className="item"
+    >
+      <div
+        className="info"
+      >
+        <h5>
+          undefined payed You
+        </h5>
+        <p
+          className="msg"
+        />
+        <p
+          className="plus"
+        >
+          +$undefined
+        </p>
+      </div>
+    </div>
+  </div>
 </div>
 `;
