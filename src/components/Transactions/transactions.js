@@ -1,60 +1,36 @@
 import { Transaction, ToggleGroup, MyTransactions } from "../../Pages/TransactionsPage/TransactionsPage"
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Axios from "axios";
 
 function Transactions() {
-    const transactions = {
-        public: [
-            {
-                transaction_id: 1,
-                recipient: 'Fran',
-                giver: 'Jose',
-                message: 'Food'
-            },
-            {
-                transaction_id: 2,
-                recipient: 'Aldo',
-                giver: 'Wyatt',
-                message: 'cleaning'
-            },
-            {
-                transaction_id: 3,
-                recipient: 'Taylor',
-                giver: 'Sasha',
-                message: 'ice cream'
-            }
 
-        ],
-        private: [
-            {
-                transaction_id: 4,
-                recipient: 'Fran',
-                giver: 'Jose',
-                message: 'Food',
-                amount: 20
-            },
-            {
-                transaction_id: 5,
-                recipient: 'Jose',
-                giver: 'Aldo',
-                message: 'cleaning',
-                amount: 50
-            },
-            {
-                transaction_id: 6,
-                recipient: 'Taylor',
-                giver: 'Jose',
-                message: 'ice cream',
-                amount: 100
-            }]
-    }
+    //TODO: When we have login functionality make current user not be hardcoded
+    const currentUser = 'Fran-Cilia'
 
+    const [publicRecords, setPublicRecords] = useState([]);
 
-
-    const currentUser = 'Jose'
+    const [privateRecords, setPrivateRecords] = useState([]);
 
     const [active, setActive] = useState('Public');
 
     let publicTransactions = true;
+
+    //TODO: save request, get it to work with the page, change to async/await
+    useEffect(() => {
+        Axios({
+            method: "GET",
+            url: "http://localhost:3010/transactions/1",
+            headers: {
+              "Content-Type": "application/json"
+            }
+          }).then(res => {
+            setPublicRecords(res.data.public);
+            setPrivateRecords(res.data.private);
+            console.log(res.data);
+          }).catch(err => {
+            console.log(err);
+          });
+    }, [])
 
     if (active === 'Public') {
         publicTransactions = true
@@ -70,14 +46,14 @@ function Transactions() {
 
             {
                 publicTransactions ?
-                    (transactions.public.map(transaction => {
+                    (publicRecords.map(transaction => {
                         return (
                             <Transaction id={transaction.transaction_id} recipient={transaction.recipient} giver={transaction.giver} message={transaction.message} publicT={publicTransactions} currentUser={currentUser} />
                         )
                     })
                     )
                     :
-                    (transactions.private.map(transaction => {
+                    (privateRecords.map(transaction => {
                         return (
                             <Transaction id={transaction.transaction_id} recipient={transaction.recipient} message={transaction.message} amount={transaction.amount} publicT={publicTransactions} currentUser={currentUser} giver={transaction.giver} />
                         )
